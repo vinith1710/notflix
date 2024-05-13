@@ -1,21 +1,36 @@
 import './layout.css';
 import logo from "../../assets/images/logo.png"
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse, faShuffle, faFireFlameCurved, faBookmark, faCircleUser, faClapperboard, faTv, faDragon, faFilm } from '@fortawesome/free-solid-svg-icons'
 
+import Button from 'react-bootstrap/Button';
 function Sidebar() {
-   
+
 
     return (
         <>
-        <div className='sidebar-wrapper'>
-            <img src={logo} className='sidebar-logo'/>
-            <div className='sidebar-items'>
-        <Link to='/'>Home</Link>
-        <Link to='/random'>Random</Link>
+            <div className='sidebar-wrapper'>
+                <img src={logo} className='sidebar-logo' alt=''/>
+                <div className='sidebar-items'>
+                    <Link to='/'><FontAwesomeIcon icon={faHouse} />Home</Link>
+                    <Link to='/random'><FontAwesomeIcon icon={faShuffle} />Random</Link>
+                    <Link to='/trending'><FontAwesomeIcon icon={faFireFlameCurved} />Trending</Link>
+                    <Link to='/library'><FontAwesomeIcon icon={faBookmark} />Library</Link>
+                    <hr/>
+                    <span>Sign in to like videos, comment, and subscribe.
+                    <Button variant="outline-secondary" style={{marginTop:'10px'}}><FontAwesomeIcon icon={faCircleUser} />Sign In</Button>{' '}
+                    </span>
+                    <hr/>
+                    <Link to='/library'><FontAwesomeIcon icon={faClapperboard} />Movie</Link>
+                    <Link to='/library'><FontAwesomeIcon icon={faTv} />Tv Series</Link>
+                    <Link to='/library'><FontAwesomeIcon icon={faDragon} />Anime</Link>
+                    <Link to='/library'><FontAwesomeIcon icon={faFilm} />Animation</Link>
+
+                </div>
             </div>
-        </div>
-          
+
         </>
-        );
-  };
-  export default Sidebar;
+    );
+};
+export default Sidebar;
