@@ -1,0 +1,12 @@
+.app-top{
+    display: flex;
+}
+.app-sidebar{
+    background-color: #202020;
+    flex: 1;
+    height: 100vh;
+    color: white;
+}
+.app-main{
+    flex: 7;
+}

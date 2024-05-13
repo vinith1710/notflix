@@ -1,0 +1,16 @@
+.sidebar-wrapper{
+    padding: 18px 26px;
+}
+.sidebar-logo{
+    height: 50px;
+}
+.sidebar-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar-items a{
+    text-decoration: none;
+    color: white;
+}
