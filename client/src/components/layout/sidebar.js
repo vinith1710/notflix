@@ -11,7 +11,7 @@ function Sidebar() {
     return (
         <>
             <div className='sidebar-wrapper'>
-                <img src={logo} className='sidebar-logo' alt=''/>
+                <Link to="/" ><img src={logo} className='sidebar-logo' alt=''/></Link>
                 <div className='sidebar-items'>
                     <Link to='/'><FontAwesomeIcon icon={faHouse} />Home</Link>
                     <Link to='/random'><FontAwesomeIcon icon={faShuffle} />Random</Link>
@@ -19,7 +19,10 @@ function Sidebar() {
                     <Link to='/library'><FontAwesomeIcon icon={faBookmark} />Library</Link>
                     <hr/>
                     <span>Sign in to like videos, comment, and subscribe.
+                    <Link to="/login" >
+
                     <Button variant="outline-secondary" style={{marginTop:'10px'}}><FontAwesomeIcon icon={faCircleUser} />Sign In</Button>{' '}
+                    </Link>
                     </span>
                     <hr/>
                     <Link to='/library'><FontAwesomeIcon icon={faClapperboard} />Movie</Link>

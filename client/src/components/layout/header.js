@@ -6,6 +6,7 @@ import { ReactComponent as Sun } from "../../assets/themes/Sun.svg";
 import { ReactComponent as Moon } from "../../assets/themes/Moon.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom';
 const Header = () => {
 
   const setDarkMode = () => {
@@ -43,9 +44,12 @@ const Header = () => {
             className="me-2"
             aria-label="Search"
           />
+
           <Button variant="outline-success">Search</Button>
         </Form>
+          <Link to="login">
         <Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}
+          </Link>
       </div>
     </>
   )

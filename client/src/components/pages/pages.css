@@ -4,3 +4,116 @@
     color: var(--text_color);
 }
 
+/* For Home */
+.home{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+/* For Video */
+.video{
+    display: flex;
+    gap: 24px;
+}
+.video-content{
+    flex: 5;
+}
+.video-wrapper{
+
+}
+.video-title{
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.video-recommend{
+    flex: 2;
+}
+.video-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.video-details div{
+    display: flex;
+    gap: 20px;
+}
+.video-details span{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+.channel{
+    display: flex;
+    justify-content: space-between;
+}
+.channel button{
+    height: max-content;
+}
+.channel-info * {
+    margin: 0;
+}
+.channel-info{
+    display: flex;
+    gap: 12px;
+}
+.channel-info img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #999;
+}
+.channel-info-text h1{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text_color);
+}
+.channel-info-text h2{
+    font-size: 12px;
+    color: var(--text_color);
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+.channel-info-text p{
+    font-size: 14px;
+    color: var(--text_color);
+}
+
+/* For Login */
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 70px);
+    background-image: url('../../assets/images/login-bg.jpg');
+    background-size: cover;
+    flex-direction: column;
+}
+.login-wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: var(--bg_color); */
+    padding: 20px 50px;
+    color: black;
+    border: 5px solid rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.5);
+    /* gap: 10px; */
+    border-radius: 20px;
+}
+.login-bottom{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.login-bottom div {
+    display: flex;
+    /* justify-content: space-between;
+    width: 37%; */
+    gap: 20px;
+}
