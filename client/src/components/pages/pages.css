@@ -2,6 +2,7 @@
     padding: 18px 26px;
     background-color: var(--bg_color);
     color: var(--text_color);
+    min-height: calc(100vh - 70px);;
 }
 
 /* For Home */

@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './pages.css';
 import Card from '../layout/Card';
-const home = () => {
+import axios from "axios";
+
+const Home = ({type}) => {
+
+  const [videos,setVideos] = useState([]);
+  useEffect(()=>{
+    const fetchVideos = async ()=>{
+      const res = await axios.get(`/videos/${type}`);
+      setVideos(res.data);
+    }
+    fetchVideos()
+  },[type])
+  
   return (
     <div className='content home'>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+      {videos.map((video)=>(
+        <Card key={video._id} video={video}/>
+       ))} 
     </div>
-  )
-}
+  );
+};
 
-export default home;
+export default Home;

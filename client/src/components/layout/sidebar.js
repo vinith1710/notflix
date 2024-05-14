@@ -14,9 +14,9 @@ function Sidebar() {
                 <Link to="/" ><img src={logo} className='sidebar-logo' alt=''/></Link>
                 <div className='sidebar-items'>
                     <Link to='/'><FontAwesomeIcon icon={faHouse} />Home</Link>
-                    <Link to='/random'><FontAwesomeIcon icon={faShuffle} />Random</Link>
-                    <Link to='/trending'><FontAwesomeIcon icon={faFireFlameCurved} />Trending</Link>
-                    <Link to='/library'><FontAwesomeIcon icon={faBookmark} />Library</Link>
+                    {/* <Link to='/random'><FontAwesomeIcon icon={faShuffle} />Random</Link> */}
+                    <Link to='trends'><FontAwesomeIcon icon={faFireFlameCurved} />Trending</Link>
+                    <Link to='subscriptions'><FontAwesomeIcon icon={faBookmark} />Library</Link>
                     <hr/>
                     <span>Sign in to like videos, comment, and subscribe.
                     <Link to="/login" >
