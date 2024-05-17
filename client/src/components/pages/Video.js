@@ -1,10 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './pages.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faShareFromSquare, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
 import Comments from '../layout/Comments';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+
+
 const Video = () => {
+
+  const {currentUser} = useSelector(state=>state.user)
+  const dispatch = useDispatch();
+
+  const path = useLocation().pathname.split("/")[2]
+
+  const [video,setVideo] = useState({});
+  const [chanel,setChannel] = useState({});
+
+  useEffect(()=>{
+    const fetchData = async ()=>{
+      try{
+        const videoRes = await axios.get(`/videos/find/${path}`)
+        const channelRes = await axios.get(`/users/find/${videoRes.userId}`)
+        setVideo(videoRes.data)
+        setChannel(channelRes.data)
+      }catch(err){}
+    }
+    fetchData();
+  },[path])
+
   return (
     <div className='content video'>
       <div className='video-content'>

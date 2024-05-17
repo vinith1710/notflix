@@ -16,7 +16,7 @@ const Card = ({type,video}) => {
 
   return (
     
-    <Link to="/video/test" style={{textDecoration: 'none'}}>
+    <Link to={`/video/${video._id}`} style={{textDecoration: 'none'}}>
     <div className='card-css'>
       <img type={type} src={video.imgUrl} alt='' />
       <div className='card-Details'>

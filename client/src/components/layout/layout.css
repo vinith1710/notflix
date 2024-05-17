@@ -105,6 +105,22 @@
     fill: #fff;
 }
 
+/* for Header and sidebar  */
+.loggedin-user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.loggedin-user img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #999;
+}
+
+
 /* For Cards */
 .card-css{
     width: 360px;
@@ -198,3 +214,5 @@
     font-size: 14px;
     color: var(--text_color);
 }
+
+

@@ -2,13 +2,19 @@ import React from 'react'
 import './layout.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { ReactComponent as Sun } from "../../assets/themes/Sun.svg";
 import { ReactComponent as Moon } from "../../assets/themes/Moon.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom';
+import { faCircleUser, faVideo } from '@fortawesome/free-solid-svg-icons'
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/userSlice';
 const Header = () => {
-
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const setDarkMode = () => {
     document.querySelector("body").setAttribute('data-theme', 'dark')
   }
@@ -21,6 +27,13 @@ const Header = () => {
     else setLightMode();
   }
 
+  const {currentUser} = useSelector(state=>state.user)
+    // const currentUser = useSelector(state=>state.user.currentUser)
+
+    const handleLogout = ()=>{
+      dispatch(logout())
+      navigate("/login");
+    }
   return (
     <>
       <div className='header'>
@@ -47,12 +60,24 @@ const Header = () => {
 
           <Button variant="outline-success">Search</Button>
         </Form>
-          <Link to="login">
+          {currentUser ? (
+            <div className='loggedin-user'>
+              <FontAwesomeIcon icon={faVideo} />
+              <img src={currentUser.img}/>
+              
+
+              <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
+      <Dropdown.Item href="#/action-1" onClick={handleLogout}> Logout</Dropdown.Item>
+      {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item> */}
+    </DropdownButton>
+              
+            </div>
+          ) : (<Link to="login">
         <Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}
-          </Link>
+          </Link>)}
       </div>
     </>
   )
 }
 
-export default Header
+export default Header;
