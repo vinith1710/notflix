@@ -5,6 +5,14 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Video from "./components/pages/Video";
 import Login from "./components/pages/Login";
+
+// Fontawasome global import import the library
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+// import your icons
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 function App() {
   return (
     <>
@@ -36,3 +44,4 @@ function App() {
 }
 
 export default App;
+library.add(fab, fas, far)

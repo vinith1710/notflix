@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './layout.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -11,8 +11,9 @@ import { faCircleUser, faVideo } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/userSlice';
+import Upload from './upload';
 const Header = () => {
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const setDarkMode = () => {
@@ -27,13 +28,16 @@ const Header = () => {
     else setLightMode();
   }
 
-  const {currentUser} = useSelector(state=>state.user)
-    // const currentUser = useSelector(state=>state.user.currentUser)
+  const { currentUser } = useSelector(state => state.user)
+  // const currentUser = useSelector(state=>state.user.currentUser)
 
-    const handleLogout = ()=>{
-      dispatch(logout())
-      navigate("/login");
-    }
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate("/login");
+  }
+
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <div className='header'>
@@ -60,22 +64,19 @@ const Header = () => {
 
           <Button variant="outline-success">Search</Button>
         </Form>
-          {currentUser ? (
-            <div className='loggedin-user'>
-              <FontAwesomeIcon icon={faVideo} />
-              <img src={currentUser.img}/>
-              
-
-              <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
-      <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
-      {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item> */}
-    </DropdownButton>
-              
-            </div>
-          ) : (<Link to="login">
-        <Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}
-          </Link>)}
+        {currentUser ? (
+          <div className='loggedin-user'>
+            <FontAwesomeIcon icon={faVideo} onClick={()=>setOpen(true)}/>
+            <img src={currentUser.img} />
+            <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
+              <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
+            </DropdownButton>
+          </div>
+        ) : (<Link to="login">
+          <Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}
+        </Link>)}
       </div>
+      {open && <Upload setOpen={setOpen} />}
     </>
   )
 }
