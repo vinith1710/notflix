@@ -67,7 +67,7 @@ const Header = () => {
               
 
               <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
-      <Dropdown.Item href="#/action-1" onClick={handleLogout}> Logout</Dropdown.Item>
+      <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
       {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item> */}
     </DropdownButton>
               

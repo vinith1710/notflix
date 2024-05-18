@@ -6,6 +6,10 @@ import jwt from "jsonwebtoken";
 
 export const signup = async (req, res, next) => {
     try {
+        const user = await User.findOne({ name: req.body.name })
+        const email = await User.findOne({ email: req.body.email })
+        if (user) return res.status(201).send("UserName already exists")    
+        if (email) return res.status(201).send("E-Mail already exists")
         const salt = 10;
         const hash = bcrypt.hashSync(req.body.password, salt);
         const newUser = new User({ ...req.body, password: hash });
@@ -20,9 +24,9 @@ export const signup = async (req, res, next) => {
 export const signin = async (req, res, next) => {
     try {
         const user = await User.findOne({ name: req.body.name })
-        if (!user) return next(createError(404, "User not found"))
+        if (!user) return next(createError(201, "User not found"))
         const isCorrect = await bcrypt.compareSync(req.body.password, user.password);
-        if (!isCorrect) return next(createError(400, "Wrong Password"))
+        if (!isCorrect) return next(createError(201, "Incorrect Password"))
 
         const token = jwt.sign({ id: user._id }, process.env.JWT)
         const { password, ...others } = user._doc;

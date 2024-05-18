@@ -92,19 +92,28 @@
     height: calc(100vh - 70px);
     background-image: url('../../assets/images/login-bg.jpg');
     background-size: cover;
-    flex-direction: column;
+    /* flex-direction: column; */
+    gap: 50px;
 }
-.login-wrapper{
+#login-wrapper, #signup-wrapper{
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* background-color: var(--bg_color); */
     padding: 20px 50px;
     color: black;
     border: 5px solid rgba(255, 255, 255, 0.8);
     background-color: rgba(255, 255, 255, 0.5);
-    /* gap: 10px; */
     border-radius: 20px;
+}
+#signup-wrapper{
+    display: none;
+}
+.label-error{
+    display: none;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    background-color: rgba(255, 2, 2, 0.5);
+    border-radius: 10px;
 }
 .login-bottom{
     display: flex;
