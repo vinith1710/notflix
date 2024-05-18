@@ -18,10 +18,12 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage,
-}
+};
 
 const rootReducer = combineReducers({user: userReducer,video: videoReducer});
+
 const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
@@ -30,6 +32,6 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
-})
+});
 
 export const persistor = persistStore(store)

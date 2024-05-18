@@ -7,29 +7,30 @@ import Comments from '../layout/Comments';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-
+import { fetchSuccess } from '../../redux/videoSlice';
+import {format} from "timeago.js"
 
 const Video = () => {
 
-  const {currentUser} = useSelector(state=>state.user)
+  const {currentUser} = useSelector((state)=>state.user);
+  const {currentVideo} = useSelector((state)=>state.video);
   const dispatch = useDispatch();
 
-  const path = useLocation().pathname.split("/")[2]
+  const path = useLocation().pathname.split("/")[2];
 
-  const [video,setVideo] = useState({});
-  const [chanel,setChannel] = useState({});
+  const [channel,setChannel] = useState({});
 
   useEffect(()=>{
     const fetchData = async ()=>{
       try{
         const videoRes = await axios.get(`/videos/find/${path}`)
-        const channelRes = await axios.get(`/users/find/${videoRes.userId}`)
-        setVideo(videoRes.data)
+        const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`)
         setChannel(channelRes.data)
+        dispatch(fetchSuccess(videoRes.data))
       }catch(err){}
     }
     fetchData();
-  },[path])
+  },[path,dispatch])
 
   return (
     <div className='content video'>
@@ -37,11 +38,11 @@ const Video = () => {
         <div className='video-wrapper'>
           <iframe width="100%" height="450" src="https://www.youtube.com/embed/TcMBFSGVi1c?si=9UIYCdgIpHOvyn-6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-        <h1 className='video-title'>Video Title</h1>
+        <h1 className='video-title'>{currentVideo.title}</h1>
         <div className='video-details'>
-          <span>99,246 views . 17 Oct, 2023</span>
+          <span>{currentVideo.views} views . {format(currentVideo.createdAt)}</span>
           <div>
-            <span><FontAwesomeIcon icon={faThumbsUp} />Like</span>
+            <span><FontAwesomeIcon icon={faThumbsUp} />{currentVideo.likes?.length}Like</span>
             <span><FontAwesomeIcon icon={faThumbsDown} />Dislike</span>
             <span><FontAwesomeIcon icon={faShareFromSquare} />Share</span>
             <span><FontAwesomeIcon icon={faBookmark} />Save</span>
@@ -50,11 +51,11 @@ const Video = () => {
         <hr />
         <div className='channel'>
           <div className='channel-info'>
-            <img src='' alt='' />
+            <img src={channel.img}  />
             <div className='channel-info-text'>
-              <h1>Channel Name</h1>
-              <h2>102k Followers</h2>
-              <p>cbasic ascgasaicg asics cscssc uuscg c cg cyqucu cuq</p>
+              <h1>{channel.name}</h1>
+              <h2>{channel.subscribers} Followers</h2>
+              <p>{currentVideo.desc}</p>
             </div>
           </div>
           <Button variant="outline-info" style={{ marginTop: '10px' }}>Follow User</Button>{' '}
