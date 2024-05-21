@@ -19,7 +19,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const loginOrsignup = () => {
-        if (document.getElementById('login-wrapper').style.display == 'flex') {
+        if (document.getElementById('login-wrapper').style.display === 'flex') {
             document.getElementById('login-wrapper').style.display = 'none'
             document.getElementById('signup-wrapper').style.display = 'flex'
         } else {
@@ -35,13 +35,13 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         await loginValidate();
-        if (loginerror == false) {
+        if (loginerror === false) {
             dispatch(loginStart())
             const name = nameLogin;
             const password = passwordLogin;
             const res = await axios.post("/auth/signin", { name, password });
             try {
-                if (res.status == 201) {
+                if (res.status === 201) {
                     toast.warn(res.data.message, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "dark", });
                 } else {
                     dispatch(loginSuccess(res.data))
@@ -76,13 +76,13 @@ const Login = () => {
     const handleSignup = async (e) => {
         e.preventDefault();
         await signupValidate();
-        if (signuperror == false) {
+        if (signuperror === false) {
             const name = nameSignup;
             const email = emailSignup;
             const password = passwordSignup;
             const res = await axios.post("/auth/signup", { name, email, password });
             try {
-                if (res.status == 200) { toast.success(res.data, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", }); }
+                if (res.status === 200) { toast.success(res.data, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", }); }
                 else { toast.error(res.data, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", }); }
             } catch (err) { console.log("Sign in error->", err); }
         }
@@ -246,78 +246,6 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-
-
-            {/* <div className='login-wrapper'>
-                <h3>Sign In</h3>
-                <h5>To continue to NOTFLIX</h5>
-                <Form>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>User Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter your User name" onChange={e => setNamelogin(e.target.value)} />
-                            </Form.Group>
-                            <div>Enter a user name</div><div>Username should be more than three characters</div>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="text" placeholder="Enter a password" onChange={e => setPasswordlogin(e.target.value)} />
-                            </Form.Group>
-
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Button variant="primary" style={{ width: 'max-content', margin: 'auto' }} onClick={handleLogin}>LOG IN</Button>{' '}
-                    </Row>
-                </Form>
-                <hr />
-
-                <Button variant="warning" style={{ width: 'max-content', margin: 'auto' }} onClick={signInWithGoogle}>Sign in with Google</Button>{' '}
-
-                <hr />
-                <h3>Sign Up</h3>
-                <h5>To create new account</h5>
-                <Form>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>User Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter your User name" value={nameSignup} onChange={e => setNamesignup(e.target.value)} />
-                            </Form.Group>
-                            <div className='label-error'>Enter a user name</div><div className='label-error'>Username should be more than three characters</div>
-                        </Col>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="text" placeholder="Enter a password" onChange={e => setPasswordsignup(e.target.value)} />
-                            </Form.Group>
-
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <Form.Label>E-Mail</Form.Label>
-                                <Form.Control type="text" placeholder="Enter your Email Id" onChange={e => setEmailsignup(e.target.value)} />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Button variant="success" style={{ width: 'max-content', margin: 'auto' }} onClick={handleSignup}>SIGN UP</Button>{' '}
-                        <ToastContainer position="top-right" autoClose={2000} hideProgressBar={false} newestOnTop closeOnClick rtl={false} pauseOnFocusLoss={false} draggable={false} pauseOnHover theme="light" />
-                    </Row>
-                </Form>
-                <div className='login-bottom'>
-                    <h5>Notflix India</h5>
-                    <div>
-                        <span>Help</span>
-                        <span>Privacy</span>
-                        <span>Terms</span>
-                    </div>
-                </div>
-            </div> */}
 
         </div>
     )

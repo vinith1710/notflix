@@ -2,7 +2,7 @@ import './layout.css';
 import logo from "../../assets/images/logo.png"
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faShuffle, faFireFlameCurved, faBookmark, faCircleUser, faClapperboard, faTv, faDragon, faFilm } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faFireFlameCurved, faBookmark, faCircleUser, faClapperboard, faTv, faDragon, faFilm } from '@fortawesome/free-solid-svg-icons'
 
 import Button from 'react-bootstrap/Button';
 import { useSelector } from 'react-redux';

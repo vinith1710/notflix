@@ -15,6 +15,7 @@ const Video = () => {
 
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
+  const [loading,setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const path = useLocation().pathname.split("/")[2];
@@ -28,9 +29,10 @@ const Video = () => {
       const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`);
       setChannel(channelRes.data);
       dispatch(fetchSuccess(videoRes.data))
+      setLoading(true)
       }catch(err){console.log("useeffect error->",err);}
     }
-    fetchData()
+    fetchData();
   }, [path,dispatch])
 
   const handleLike= async ()=>{
@@ -49,12 +51,13 @@ const Video = () => {
     await axios.put(`/users/sub/${channel._id}`)
     dispatch(subscription(channel._id));
   }
+if(loading){
 
   return (
     <div className='content video'>
       <div className='video-content'>
         <div className='video-wrapper'>
-          {/* <iframe width="100%" height="450" src="https://www.youtube.com/embed/TcMBFSGVi1c?si=9UIYCdgIpHOvyn-6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */}
+          <video src={currentVideo.videoUrl} controls style={{width:"100%"}}></video>
         </div>
         <h1 className='video-title'>{currentVideo.title}</h1>
         <div className='video-details'>
@@ -82,9 +85,10 @@ const Video = () => {
         <hr />
         <Comments videoId={currentVideo._id}/>
       </div>
-      <div className='video-recommend'>recommend</div>
+      {/* <div className='video-recommend'>recommend</div> */}
     </div>
   )
+}
 }
 
 export default Video;

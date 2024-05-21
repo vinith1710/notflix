@@ -251,8 +251,8 @@
     justify-content: center;
 }
 .upload-wrapper {
-    width: 600px;
-    height: 600px;
+    width: max-content;
+    height: max-content;
     background-color: var(--bg_color);
     color: var(--text_color);
     padding: 20px;
