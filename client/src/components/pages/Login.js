@@ -164,14 +164,14 @@ const Login = () => {
                 <Form>
                     <Row>
                         <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Group className="mb-3" >
                                 <Form.Label>User Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter your User name" onChange={e => setNamelogin(e.target.value)} />
                             </Form.Group>
                             <div className='label-error' id='nameLogincheck'>Enter a user name</div>
                         </Col>
                         <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Group className="mb-3" >
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter a password" onChange={e => setPasswordlogin(e.target.value)} />
                             </Form.Group>
@@ -205,14 +205,14 @@ const Login = () => {
                 <Form>
                     <Row>
                         <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Group className="mb-3" >
                                 <Form.Label>User Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter your User name" onChange={e => setNamesignup(e.target.value)} />
                             </Form.Group>
                             <div className='label-error' id='nameSignupcheck'>Enter a user name</div><div className='label-error' id='nameSignupvalid'>Username should be more than three characters</div>
                         </Col>
                         <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Group className="mb-3" >
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter a password" onChange={e => setPasswordsignup(e.target.value)} />
                             </Form.Group>
@@ -223,7 +223,8 @@ const Login = () => {
                     </Row>
                     <Row>
                         <Col>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Group className="mb-3" >
+                            {/* controlId="exampleForm.ControlInput1" */}
                                 <Form.Label>E-Mail</Form.Label>
                                 <Form.Control type="text" placeholder="Enter your Email Id" onChange={e => setEmailsignup(e.target.value)} />
                             </Form.Group>
