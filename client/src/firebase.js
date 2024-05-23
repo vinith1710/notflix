@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import {getAuth, GoogleAuthProvider} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAwMndfTpRVy9N8oV2q_xqgTs4YlZVEBJo",
-  authDomain: "notflix-c27b5.firebaseapp.com",
-  projectId: "notflix-c27b5",
-  storageBucket: "notflix-c27b5.appspot.com",
-  messagingSenderId: "558431893405",
-  appId: "1:558431893405:web:32e5d64b664700e3b96174"
+  apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID
 };
 
 // Initialize Firebase
