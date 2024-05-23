@@ -60,10 +60,6 @@ const userName=currentUser.name;
     );
   };
 
-  // useEffect(() => {video && uploadFile(video,"videoUrl") }, [video]);
-  // useEffect(() => {img && uploadFile(img,"imgUrl") }, [img]);
-
-
   const handleUpload = async (e) => {
     e.preventDefault();
     let videoTitle = document.getElementById("videoTitle").value;
@@ -83,23 +79,25 @@ const userName=currentUser.name;
     } else { document.getElementById('imageCheck').style.display = 'block'; }
     if (inputs.title) {
       document.getElementById('titleCheck').style.display = 'none';
-    } else { document.getElementById('titleCheck').style.display = 'block'; }
+      setUploaderror(true);
+    } else {setUploaderror(false); document.getElementById('titleCheck').style.display = 'block'; }
     if (inputs.desc) {
       document.getElementById('descCheck').style.display = 'none';
-    } else { document.getElementById('descCheck').style.display = 'block'; }
+      setUploaderror(true);
+    } else {setUploaderror(false); document.getElementById('descCheck').style.display = 'block'; }
     if (tags.length > 0) {
       document.getElementById('tagsCheck').style.display = 'none';
-    } else { document.getElementById('tagsCheck').style.display = 'block'; }
-    if(inputs.videoUrl && inputs.imgUrl){
-      const res = await axios.post("/videos ",{...inputs,tags})
-      setOpen(false);
-      res.data === 200 && navigate(`/video/${res.data._id}`)
-      toast.success("Video Successfully Uploaded", { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
-    }
-
+      setUploaderror(true);
+    } else {setUploaderror(false); document.getElementById('tagsCheck').style.display = 'block'; }
+  }
+  
+  const handlePost=async()=>{
+    const res = await axios.post("/videos ",{...inputs,tags})
+    setOpen(false);
+    res.data === 200 && navigate(`/video/${res.data._id}`)
+    toast.success("Video Successfully Uploaded", { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
 
   }
-
   return (
     <>
       <div className='upload-video'>
@@ -134,7 +132,7 @@ const userName=currentUser.name;
           <div id='imageCheck' className='label-error'>Select an Image</div>
 
           {/* {videoperc === 100 ? <Button variant="success" onClick={handleUpload}>UPLOAD</Button> : <Button variant="secondary" size="lg" disabled>UPLOAD</Button>} */}
-          <Button variant="success" onClick={handleUpload}>UPLOAD</Button>
+          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="primary" onClick={handlePost}>POST VIDEO</Button>) : (<Button variant="success" onClick={handleUpload}>UPLOAD</Button>)}
         </div>
       </div>
     </>
