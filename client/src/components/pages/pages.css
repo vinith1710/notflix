@@ -2,7 +2,7 @@
     padding: 18px 26px;
     background-color: var(--bg_color);
     color: var(--text_color);
-    min-height: calc(100vh - 70px);;
+    min-height: calc(100vh - 70px);
 }
 
 /* For Home */
@@ -93,7 +93,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 70px);
+    height: 100vh;
     background-image: url('../../assets/images/login-bg.jpg');
     background-size: cover;
     /* flex-direction: column; */
@@ -131,4 +131,26 @@
     /* justify-content: space-between;
     width: 37%; */
     gap: 20px;
+}
+
+/* Dashboard */
+.dashboard{
+    /* background-color: var(--bg_color);
+    color: var(--text_color);
+    height: calc(100vh - 70px); */
+}
+.card-wrapper{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.dashboard-card{
+    border: 2px solid var(--text_color);
+    flex: 1;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    color: black;
 }

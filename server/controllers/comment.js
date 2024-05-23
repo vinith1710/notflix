@@ -1,6 +1,12 @@
 import { createError } from "../error.js"
 import Comment from "../models/Comments.js"
 
+
+export const listComments = async(req,res,next)=>{
+    const commendsList = await Comment.find()
+    res.status(200).json(commendsList)
+} 
+
 export const addComment = async (req,res,next)=>{
     const newComment = new Comment({...req.body, userId:req.user.id})
     try{

@@ -5,7 +5,7 @@ import {  faThumbsUp, faThumbsDown, faShareFromSquare, faBookmark } from '@forta
 import Button from 'react-bootstrap/Button';
 import Comments from '../layout/Comments';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { fetchSuccess, like, dislike } from '../../redux/videoSlice';
 import { format } from "timeago.js"
@@ -59,7 +59,11 @@ useEffect(()=>{
     await axios.put(`/users/sub/${channel._id}`)
     dispatch(subscription(channel._id));
   }
-if(loading){
+  if(!currentUser){
+    return <Navigate to="/" replace/>
+  }
+if(!loading){return <h1>Loading Video....</h1>}
+{
   return (
     <div className='content video'>
       <div className='video-content'>

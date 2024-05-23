@@ -8,12 +8,13 @@ import { ReactComponent as Sun } from "../../assets/themes/Sun.svg";
 import { ReactComponent as Moon } from "../../assets/themes/Moon.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser, faVideo } from '@fortawesome/free-solid-svg-icons'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/userSlice';
 import Upload from './upload';
 const Header = () => {
 
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const setDarkMode = () => {
@@ -22,7 +23,7 @@ const Header = () => {
   const setLightMode = () => {
     document.querySelector("body").setAttribute('data-theme', 'light')
   }
-
+  
   const toggleTheme = (e) => {
     if (e.target.checked) setDarkMode();
     else setLightMode();
@@ -30,15 +31,19 @@ const Header = () => {
 
   const { currentUser } = useSelector(state => state.user)
   // const currentUser = useSelector(state=>state.user.currentUser)
-
+  
   const handleLogout = () => {
     dispatch(logout())
-    navigate("/login");
+    navigate("/");
   }
 
   const [open, setOpen] = useState(false);
+  const path = useLocation().pathname;
+  if(path == "/"){
+    return;
+  }
 
-  return (
+      return (
     <>
       <div className='header'>
 
@@ -48,7 +53,7 @@ const Header = () => {
             type='checkbox'
             id='darkmode-toggle'
             onChange={toggleTheme}
-          />
+            />
           <label className='dark_mode_label' for='darkmode-toggle'>
             <Sun />
             <Moon />
@@ -72,13 +77,14 @@ const Header = () => {
               <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
             </DropdownButton>
           </div>
-        ) : (<Link to="login">
-          <Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}
-        </Link>)}
+        ) : (
+        <Link to="/"><Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}</Link>
+      )}
       </div>
       {open && <Upload setOpen={setOpen} />}
     </>
   )
+
 }
 
 export default Header;

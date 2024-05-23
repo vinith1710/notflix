@@ -45,7 +45,7 @@ const Login = () => {
                     toast.warn(res.data.message, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "dark", });
                 } else {
                     dispatch(loginSuccess(res.data))
-                    navigate("/");
+                    navigate("/home");
                 }
             } catch (err) { dispatch(loginFailure()) }
         }
@@ -149,7 +149,7 @@ const Login = () => {
                     img: result.user.photoURL,
                 }).then((res) => {
                     dispatch(loginSuccess(res.data))
-                    navigate("/");
+                    navigate("/home");
                 })
             })
             .catch((error) => {
