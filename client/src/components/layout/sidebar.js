@@ -17,7 +17,7 @@ function Sidebar() {
 
         return (
             <>
-            <div className="app-sidebar">
+            <div className="app-sidebar d-none d-sm-block">
 
             <div className='sidebar-wrapper'>
                 <Link to="home" ><img src={logo} className='sidebar-logo' alt=''/></Link>
