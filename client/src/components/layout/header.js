@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './layout.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -66,7 +66,7 @@ const Header = () => {
         </Form>
         {currentUser ? (
           <div className='loggedin-user'>
-            <FontAwesomeIcon icon={faVideo} onClick={()=>setOpen(true)}/>
+            <FontAwesomeIcon icon={faVideo} id='addVideo' onClick={()=>setOpen(true)}/>
             <img src={currentUser.img} />
             <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
               <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>

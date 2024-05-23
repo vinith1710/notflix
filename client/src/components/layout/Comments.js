@@ -5,6 +5,7 @@ import axios from "axios";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 const Comments = (videoId) => {
 
@@ -14,19 +15,25 @@ const Comments = (videoId) => {
     useEffect(() => {
         const fetchComments = async () => {
             try {
-                const res = await axios.get(`/comments/${videoId}`)
+        let data = videoId.videoId;
+
+                const res = await axios.get(`/comments/${data}`)
                 setComments(res.data)
             } catch (err) { console.log(err); }
         }
         fetchComments();
-    }, [videoId]);
+    }, [videoId,comments]);
 
     const addComment = async()=>{
         let desc = document.getElementById("commentId").value;
-        console.log("video id",videoId);
+        let data = videoId.videoId;
         if(desc){
-            await axios.post("/comments/",{videoId, desc});
-            document.getElementById("commentId").value = "";
+            await axios.post("/comments/",{'videoId':data, desc});
+            try{
+                toast.success("comment Posted", { position: "top-right", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
+                document.getElementById("commentId").value = "";
+
+            }catch(err){}
         }else{}
     }
 

@@ -23,7 +23,7 @@ const Comment = ({comment}) => {
             <img src={channel.img} alt='' />
             <div className='comment-details'>
                 <div className='comment-user-details'>
-                <span>{channel.name}e</span> <date>{format(comment.createdAt)} days ago</date>
+                <span>{channel.name}</span> <date>{format(comment.createdAt)} days ago</date>
                 </div>
                 
                 <p>{comment.desc}</p>

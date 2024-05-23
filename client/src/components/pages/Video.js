@@ -30,11 +30,19 @@ const Video = () => {
       setChannel(channelRes.data);
       dispatch(fetchSuccess(videoRes.data))
       setLoading(true)
-      }catch(err){console.log("useeffect error->",err);}
-    }
-    fetchData();
-  }, [path,dispatch])
+    }catch(err){console.log("useeffect error->",err);}
+  }
+  fetchData();
+}, [path,dispatch])
 
+useEffect(()=>{
+  const addViews=async()=>{
+    await axios.put(`/videos/view/${path}`);
+    console.log("add views");
+
+  }
+  addViews();
+  },[])
   const handleLike= async ()=>{
     await axios.put(`/users/like/${currentVideo._id}`)
     dispatch(like(currentUser._id))
@@ -52,7 +60,6 @@ const Video = () => {
     dispatch(subscription(channel._id));
   }
 if(loading){
-
   return (
     <div className='content video'>
       <div className='video-content'>
@@ -80,7 +87,6 @@ if(loading){
             </div>
           </div>
           <Button variant="outline-info" style={{ marginTop: '10px' }} onClick={followChannel}>{currentUser.subscribedUsers?.includes(channel._id) ? "FOLLOWING" : "FOLLOW USER"}</Button>
-
         </div>
         <hr />
         <Comments videoId={currentVideo._id}/>

@@ -3,14 +3,11 @@ import Comment from "../models/Comments.js"
 
 export const addComment = async (req,res,next)=>{
     const newComment = new Comment({...req.body, userId:req.user.id})
-    console.log("newcomment",newComment);
     try{
-        console.log("comment working");
         const saveComment = await newComment.save()
         res.status(200).json(saveComment)
     }catch(err){
         next(err)
-        console.log("comment error");
     }
 }
 
