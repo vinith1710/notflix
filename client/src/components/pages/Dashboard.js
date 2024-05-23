@@ -40,15 +40,15 @@ const Dashboard = () => {
 
 <div className='dashboard-card' style={{backgroundColor:"pink"}}>
     <h1>Users</h1>
-    <h3>{ users ? users.length : "Loading"}</h3>
+    <h3>{ users.length ? users.length : "Loading"}</h3>
 </div>
 <div className='dashboard-card'style={{backgroundColor:"rgb(1, 255, 192"}}>
     <h1>Videos</h1>
-    <h3>{videos ? videos.length : "Loading"}</h3>
+    <h3>{videos.length ? videos.length : "Loading"}</h3>
 </div>
 <div className='dashboard-card' style={{backgroundColor:"rgb(1, 132, 255)"}}>
     <h1>Comments</h1>
-    <h3>{comments ? comments.length : "Loading"}</h3>
+    <h3>{comments.length ? comments.length : "Loading"}</h3>
 </div>
             </div>
         </div>

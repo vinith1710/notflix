@@ -38,8 +38,6 @@ const Video = () => {
 useEffect(()=>{
   const addViews=async()=>{
     await axios.put(`/videos/view/${path}`);
-    console.log("add views");
-
   }
   addViews();
   },[])

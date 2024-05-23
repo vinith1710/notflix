@@ -6,9 +6,12 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import app from '../../firebase';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 const Upload = ({ setOpen }) => {
-
+  const { currentUser } = useSelector(state => state.user)
+const userName=currentUser.name;
   const navigate = useNavigate();
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
@@ -16,7 +19,7 @@ const Upload = ({ setOpen }) => {
   const [videoperc, setVideogperc] = useState(0);
   const [inputs, setInputs] = useState({});
   const [tags, setTags] = useState([]);
-
+  const [uploaderror, setUploaderror] = useState(false);
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -57,16 +60,44 @@ const Upload = ({ setOpen }) => {
     );
   };
 
-  useEffect(() => {video && uploadFile(video,"videoUrl") }, [video]);
-  useEffect(() => {img && uploadFile(img,"imgUrl") }, [img]);
+  // useEffect(() => {video && uploadFile(video,"videoUrl") }, [video]);
+  // useEffect(() => {img && uploadFile(img,"imgUrl") }, [img]);
 
-  const handleUpload=async(e)=>{
+
+  const handleUpload = async (e) => {
     e.preventDefault();
-    console.log("inputs",inputs);
-    console.log("tags",tags);
-    const res = await axios.post("/videos ",{...inputs,tags})
-    setOpen(false);
-    res.data === 200 && navigate(`/video/${res.data._id}`)
+    let videoTitle = document.getElementById("videoTitle").value;
+    let videoDesc = document.getElementById("videoDesc").value;
+    if (video) {
+      if(videoperc == 0){
+        uploadFile(video,"videoUrl")
+      }
+      document.getElementById('videoCheck').style.display = 'none';
+    } else { document.getElementById('videoCheck').style.display = 'block'; }
+    if (img) {
+
+      if(imgperc == 0){
+        uploadFile(img,"imgUrl")
+      }
+      document.getElementById('imageCheck').style.display = 'none';
+    } else { document.getElementById('imageCheck').style.display = 'block'; }
+    if (inputs.title) {
+      document.getElementById('titleCheck').style.display = 'none';
+    } else { document.getElementById('titleCheck').style.display = 'block'; }
+    if (inputs.desc) {
+      document.getElementById('descCheck').style.display = 'none';
+    } else { document.getElementById('descCheck').style.display = 'block'; }
+    if (tags.length > 0) {
+      document.getElementById('tagsCheck').style.display = 'none';
+    } else { document.getElementById('tagsCheck').style.display = 'block'; }
+    if(inputs.videoUrl && inputs.imgUrl){
+      const res = await axios.post("/videos ",{...inputs,tags})
+      setOpen(false);
+      res.data === 200 && navigate(`/video/${res.data._id}`)
+      toast.success("Video Successfully Uploaded", { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
+    }
+
+
   }
 
   return (
@@ -75,26 +106,35 @@ const Upload = ({ setOpen }) => {
         <div className='upload-wrapper'>
           <div className='upload-close' onClick={() => setOpen(false)}>X</div>
           <h1>Upload a Video</h1>
-          <Form.Group controlId="formFile" className="mb-3">
+          <Form.Group className="mb-3">
             <Form.Label>Video:</Form.Label>
             {videoperc > 0 ? ("Uploading " + videoperc + " %") : (<Form.Control type="file" accept='video/*,.mkv' onChange={e => setVideo(e.target.files[0])} />)}
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <div id='videoCheck' className='label-error'>Select a video</div>
+          <Form.Group className="mb-3" >
             <Form.Label>Video Title</Form.Label>
-            <Form.Control type="text" name='title' placeholder="Enter the name of the video" onChange={handleChange}  />
+            <Form.Control type="text" name='title' placeholder="Enter the name of the video" onChange={handleChange} id='videoTitle' />
           </Form.Group>
-          <FloatingLabel controlId="floatingTextarea2" label="Video Description">
-            <Form.Control as="textarea" name='desc' placeholder="Enter Video Description" style={{ height: '100px' }} onChange={handleChange}  />
+          <div id='titleCheck' className='label-error'>Enter video Title</div>
+          <FloatingLabel label="Video Description">
+            <Form.Control as="textarea" name='desc' placeholder="Enter Video Description" style={{ height: '100px' }} onChange={handleChange} id='videoDesc' />
           </FloatingLabel>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <div id='descCheck' className='label-error'>Enter video Description</div>
+
+          <Form.Group className="mb-3" >
             <Form.Label>Video Tags</Form.Label>
             <Form.Control type="text" placeholder="Separate each tags with comma" onChange={handleTags} />
           </Form.Group>
-          <Form.Group controlId="formFile" className="mb-3">
+          <div id='tagsCheck' className='label-error'>Select Minimum 1 Tag(s)</div>
+
+          <Form.Group className="mb-3">
             <Form.Label>Thumbnail:</Form.Label>
             {imgperc > 0 ? ("Uploading " + imgperc + " %") : (<Form.Control type="file" accept='image/*' onChange={e => setImg(e.target.files[0])} />)}
           </Form.Group>
-          {videoperc === 100 ? <Button variant="success" onClick={handleUpload}>UPLOAD</Button> : <Button variant="secondary" size="lg" disabled>UPLOAD</Button>}
+          <div id='imageCheck' className='label-error'>Select an Image</div>
+
+          {/* {videoperc === 100 ? <Button variant="success" onClick={handleUpload}>UPLOAD</Button> : <Button variant="secondary" size="lg" disabled>UPLOAD</Button>} */}
+          <Button variant="success" onClick={handleUpload}>UPLOAD</Button>
         </div>
       </div>
     </>
