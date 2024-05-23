@@ -25,7 +25,7 @@ app.get('/',(req,res) =>{
 
 app.use(cors(
 {
-    origin:["https://deploy-mern-1whq.vercel.app"],
+    origin:["https://notflix-client.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true
 }
