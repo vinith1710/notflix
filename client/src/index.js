@@ -7,7 +7,10 @@ import { persistor, store } from './redux/store';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 // import 'dotenv/config'
+axios.defaults.baseURL = 'http://127.0.0.1:3001/api';
+// "proxy": "https://notflix-server-nine.vercel.app/api"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
