@@ -25,9 +25,9 @@ app.get('/',(req,res) =>{
 
 app.use(cors(
 {
-    origin:"https://notflix-coral.vercel.app",
-    methods: ["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    credentials: true
+    // origin:"https://notflix-coral.vercel.app",
+    // methods: ["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    // credentials: true
 }
 ));
 app.use(cookieParser())
