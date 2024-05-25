@@ -92,7 +92,7 @@ const userName=currentUser.name;
   }
   
   const handlePost=async()=>{
-    const res = await axios.post("/videos ",{...inputs,tags})
+    const res = await axios.post("/videos/",{...inputs,tags})
     setOpen(false);
     res.data === 200 && navigate(`/video/${res.data._id}`)
     toast.success("Video Successfully Uploaded", { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
