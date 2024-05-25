@@ -11,6 +11,8 @@ export const listVideos = async(req,res,next)=>{
 
 
 export const addVideo = async (req,res,next)=>{
+    console.log("reqbody",req.body);
+    console.log("userid",req.user.id);
 const newVideo = new Video({userId:req.user.id, ...req.body});
 try{
     const saveVideo = await newVideo.save();
