@@ -44,7 +44,6 @@ const Login = () => {
                 if (res.status === 201) {
                     toast.warn(res.data.message, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "dark", });
                 } else {
-                    console.log("login res->",res);
                     dispatch(loginSuccess(res.data))
                     navigate("/home");
                 }

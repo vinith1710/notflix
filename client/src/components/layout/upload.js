@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
@@ -10,8 +10,6 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
 const Upload = ({ setOpen }) => {
-  const { currentUser } = useSelector(state => state.user)
-const userName=currentUser.name;
   const navigate = useNavigate();
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
@@ -26,9 +24,9 @@ const userName=currentUser.name;
     });
   };
 
-  const handleTags = (e) => {
-    setTags(e.target.value.split(","));
-  };
+  // const handleTags = (e) => {
+  //   setTags(e.target.value.split(","));
+  // };
 
   const uploadFile = (file, urlType) => {
     const storage = getStorage(app);
@@ -62,17 +60,15 @@ const userName=currentUser.name;
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    let videoTitle = document.getElementById("videoTitle").value;
-    let videoDesc = document.getElementById("videoDesc").value;
     if (video) {
-      if(videoperc == 0){
+      if(videoperc === 0){
         uploadFile(video,"videoUrl")
       }
       document.getElementById('videoCheck').style.display = 'none';
     } else { document.getElementById('videoCheck').style.display = 'block'; }
     if (img) {
 
-      if(imgperc == 0){
+      if(imgperc === 0){
         uploadFile(img,"imgUrl")
       }
       document.getElementById('imageCheck').style.display = 'none';
@@ -85,14 +81,14 @@ const userName=currentUser.name;
       document.getElementById('descCheck').style.display = 'none';
       setUploaderror(true);
     } else {setUploaderror(false); document.getElementById('descCheck').style.display = 'block'; }
-    if (tags.length > 0) {
+    if (inputs.tags) {
       document.getElementById('tagsCheck').style.display = 'none';
       setUploaderror(true);
     } else {setUploaderror(false); document.getElementById('tagsCheck').style.display = 'block'; }
   }
   
   const handlePost=async()=>{
-    const res = await axios.post("/videos ",{...inputs,tags})
+    const res = await axios.post("/videos ",{inputs})
     setOpen(false);
     res.data === 200 && navigate(`/video/${res.data._id}`)
     toast.success("Video Successfully Uploaded", { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
@@ -120,10 +116,17 @@ const userName=currentUser.name;
           <div id='descCheck' className='label-error'>Enter video Description</div>
 
           <Form.Group className="mb-3" >
-            <Form.Label>Video Tags</Form.Label>
-            <Form.Control type="text" placeholder="Separate each tags with comma" onChange={handleTags} />
+            {/* <Form.Label>Video Tags</Form.Label>
+            <Form.Control type="text" placeholder="Separate each tags with comma" onChange={handleTags} /> */}
+            <Form.Select name='tags' id='videoTag' aria-label="Default select example" onChange={handleChange}>
+      <option value="">Select a Tag</option>
+      <option value="Movie">Movie</option>
+      <option value="TvSeries">TvSeries</option>
+      <option value="Animation">Animation</option>
+      <option value="Anime">Anime</option>
+    </Form.Select>
           </Form.Group>
-          <div id='tagsCheck' className='label-error'>Select Minimum 1 Tag(s)</div>
+          <div id='tagsCheck' className='label-error'>Select a Tag</div>
 
           <Form.Group className="mb-3">
             <Form.Label>Thumbnail:</Form.Label>
@@ -132,7 +135,8 @@ const userName=currentUser.name;
           <div id='imageCheck' className='label-error'>Select an Image</div>
 
           {/* {videoperc === 100 ? <Button variant="success" onClick={handleUpload}>UPLOAD</Button> : <Button variant="secondary" size="lg" disabled>UPLOAD</Button>} */}
-          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="primary" onClick={handlePost}>POST VIDEO</Button>) : (<Button variant="success" onClick={handleUpload}>UPLOAD</Button>)}
+          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="success" disabled onClick={handleUpload}>UPLOAD</Button>) : (<Button variant="success" onClick={handleUpload}>UPLOAD</Button>)}
+          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="primary"  onClick={handlePost}>POST VIDEO</Button>) : (<Button variant="primary" disabled onClick={handlePost}>POST VIDEO</Button>)}
         </div>
       </div>
     </>

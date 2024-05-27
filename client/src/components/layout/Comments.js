@@ -27,6 +27,7 @@ const Comments = (videoId) => {
     const addComment = async()=>{
         let desc = document.getElementById("commentId").value;
         let data = videoId.videoId;
+        console.log("id",data,"desc",desc);
         if(desc){
             await axios.post("/comments/",{'videoId':data, desc});
             try{
