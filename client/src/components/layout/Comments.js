@@ -17,7 +17,7 @@ const Comments = (videoId) => {
             try {
         let data = videoId.videoId;
 
-                const res = await axios.get(`/comments/${data}`)
+                const res = await axios.get(`https://notflix-server-nine.vercel.app/api/comments/${data}`)
                 setComments(res.data)
             } catch (err) { console.log(err); }
         }
@@ -28,7 +28,7 @@ const Comments = (videoId) => {
         let desc = document.getElementById("commentId").value;
         let data = videoId.videoId;
         if(desc){
-            await axios.post("/comments/",{'videoId':data, desc});
+            await axios.post("https://notflix-server-nine.vercel.app/api/comments/",{'videoId':data, desc});
             try{
                 toast.success("comment Posted", { position: "top-right", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", });
                 document.getElementById("commentId").value = "";

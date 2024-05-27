@@ -11,7 +11,7 @@ const Home = ({type}) => {
   const [videos,setVideos] = useState([]);
   useEffect(()=>{
     const fetchVideos = async ()=>{
-      const res = await axios.get(`/videos/${type}`);
+      const res = await axios.get(`https://notflix-server-nine.vercel.app/api/videos/${type}`);
       setVideos(res.data);
     }
     fetchVideos()

@@ -14,11 +14,11 @@ const Dashboard = () => {
     
     useEffect(()=>{
         const userfetch=async()=>{
-            const userList = await axios.get("/users/");
+            const userList = await axios.get("https://notflix-server-nine.vercel.app/api/users/");
             setUsers(userList.data)
-            const videoList = await axios.get("/users/");
+            const videoList = await axios.get("https://notflix-server-nine.vercel.app/api/users/");
             setVideos(videoList.data)
-            const commentList = await axios.get("/comments/")
+            const commentList = await axios.get("https://notflix-server-nine.vercel.app/api/comments/")
             setComments(commentList.data)
         }
         userfetch();

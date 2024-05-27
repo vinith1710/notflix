@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 // import 'dotenv/config'
 // axios.defaults.baseURL = 'http://localhost:3001/api';
-axios.defaults.baseURL = 'https://notflix-server-nine.vercel.app/api';
+// axios.defaults.baseURL = 'https://notflix-server-nine.vercel.app/api';
 // "proxy": "https://notflix-server-nine.vercel.app/api"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
