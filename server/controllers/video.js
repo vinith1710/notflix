@@ -49,7 +49,7 @@ export const deleteVideo = async (req,res,next)=>{
     }catch(err){next(err)}
 };
 
-export const getVideo = async (req,res,next)=>{
+export const getVideo = async (req,res)=>{
     try{
         console.log("get a viodeo",req.user.id);
         const data = {"userId":req.user.id,"paramId":req.params.id}
