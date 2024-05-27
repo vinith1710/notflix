@@ -39,7 +39,7 @@ const Login = () => {
             dispatch(loginStart())
             const name = nameLogin;
             const password = passwordLogin;
-            const res = await axios.post("https://notflix-server-nine.vercel.app/api/auth/signin", { name, password });
+            const res = await axios.post("/auth/signin", { name, password });
             try {
                 if (res.status === 201) {
                     toast.warn(res.data.message, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "dark", });
@@ -80,7 +80,7 @@ const Login = () => {
             const name = nameSignup;
             const email = emailSignup;
             const password = passwordSignup;
-            const res = await axios.post("https://notflix-server-nine.vercel.app/api/auth/signup", { name, email, password });
+            const res = await axios.post("/auth/signup", { name, email, password });
             try {
                 if (res.status === 200) { toast.success(res.data, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", }); }
                 else { toast.error(res.data, { position: "top-center", autoClose: 3000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: false, progress: undefined, theme: "light", }); }
@@ -143,7 +143,7 @@ const Login = () => {
         dispatch(loginStart())
         signInWithPopup(auth, provider)
             .then((result) => {
-                axios.post("https://notflix-server-nine.vercel.app/api/auth/google", {
+                axios.post("/auth/google", {
                     name: result.user.displayName,
                     email: result.user.email,
                     img: result.user.photoURL,

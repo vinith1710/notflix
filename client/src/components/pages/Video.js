@@ -25,8 +25,8 @@ const Video = () => {
   useEffect(() => {
     const fetchData = async () => {
       try{
-      const videoRes = await axios.get(`https://notflix-server-nine.vercel.app/api/videos/find/${path}`);
-      const channelRes = await axios.get(`https://notflix-server-nine.vercel.app/api/users/find/${videoRes.data.userId}`);
+      const videoRes = await axios.get(`/videos/find/${path}`);
+      const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`);
       setChannel(channelRes.data);
       dispatch(fetchSuccess(videoRes.data))
       setLoading(true)
@@ -37,24 +37,24 @@ const Video = () => {
 
 useEffect(()=>{
   const addViews=async()=>{
-    await axios.put(`https://notflix-server-nine.vercel.app/api/videos/view/${path}`);
+    await axios.put(`/videos/view/${path}`);
   }
   addViews();
   },[])
   const handleLike= async ()=>{
-    await axios.put(`https://notflix-server-nine.vercel.app/api/users/like/${currentVideo._id}`)
+    await axios.put(`/users/like/${currentVideo._id}`)
     dispatch(like(currentUser._id))
   }
 
   const handleDislike= async()=>{
-    await axios.put(`https://notflix-server-nine.vercel.app/api/users/dislike/${currentVideo._id}`)
+    await axios.put(`/users/dislike/${currentVideo._id}`)
     dispatch(dislike(currentUser._id))
   }
 
   const followChannel=async()=>{
     currentUser.subscribedUsers.includes(channel._id) ?
-    await axios.put(`https://notflix-server-nine.vercel.app/api/users/unsub/${channel._id}`) :
-    await axios.put(`https://notflix-server-nine.vercel.app/api/users/sub/${channel._id}`)
+    await axios.put(`/users/unsub/${channel._id}`) :
+    await axios.put(`/users/sub/${channel._id}`)
     dispatch(subscription(channel._id));
   }
   if(!currentUser){
