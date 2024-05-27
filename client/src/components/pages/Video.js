@@ -25,8 +25,8 @@ const Video = () => {
   useEffect(() => {
     const fetchData = async () => {
       try{
-      const videoRes = await axios.get(`/videos/find/${path}`);
-      const channelRes = await axios.get(`/users/find/${videoRes.data.userId}`);
+      const videoRes = await axios.get(`https://notflix-server-nine.vercel.app/api/videos/find/${path}`);
+      const channelRes = await axios.get(`https://notflix-server-nine.vercel.app/api/users/find/${videoRes.data.userId}`);
       setChannel(channelRes.data);
       dispatch(fetchSuccess(videoRes.data))
       setLoading(true)
