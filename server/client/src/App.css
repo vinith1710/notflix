@@ -1,0 +1,30 @@
+:root{
+    
+    --bg_color: white;
+    --text_color: #202020;
+    --border_color: #8f8f8f30;
+    /* --light_mainbg: #202020; */
+}
+[data-theme="dark"] {
+    --bg_color: #202020;
+    --text_color: white;
+    --border_color: #8f8f8f30;
+
+    /* --light_mainbg: #202020; */
+}
+.app-top{
+    display: flex;
+}
+.app-sidebar{
+    background-color: var(--bg_color);
+    flex: 1;
+    height: 100vh;
+    color: var(--text_color);
+    position: sticky;
+    top: 0;
+    border-right: 2px solid var(--border_color);
+
+}
+.app-main{
+    flex: 7;
+}

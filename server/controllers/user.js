@@ -48,7 +48,6 @@ export const getuser = async (req,res,next)=>{
 
 export const subscribe = async (req,res,next)=>{
     try{
-        console.log("userId",req,user.id,"paramID",req.params.id);
         await User.findByIdAndUpdate(req.user.id,{
             $push:{subscribedUsers:req.params.id}
         })

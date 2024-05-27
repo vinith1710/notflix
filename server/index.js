@@ -8,9 +8,15 @@ import AuthtRoutes from './routes/auth.js';
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from 'path';
+import { fileURLToPath } from "url";
+
+//Resolving dirname for ES modules
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 const app = express();
 dotenv.config()
-
  // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -19,9 +25,9 @@ app.use(bodyParser.json())
 
 
 
-app.get('/',(req,res) =>{
-    res.send('Hello')
-})
+// app.get('/',(req,res) =>{
+//     res.send('Hello')
+// })
 
 app.use(cors(
 {
@@ -47,8 +53,11 @@ app.use((err,req,res,next)=>{
     })
 })
 
+//To use Client app
+app.use(express.static(path.join(__dirname,'/client/build')));
 
-
+//Render client for Any path
+app.get('*',(req,res)=>res.sendFile(path.join(__dirname,'/client/build/index.html')));
 
 mongoose.connect(process.env.DBURL)
 .then(() => {
