@@ -11,6 +11,8 @@ export const listVideos = async(req,res,next)=>{
 
 
 export const addVideo = async (req,res,next)=>{
+    console.log("reqbody",req.body);
+    console.log("userid",req.user.id);
 const newVideo = new Video({userId:req.user.id, ...req.body});
 try{
     const saveVideo = await newVideo.save();
@@ -51,6 +53,7 @@ export const deleteVideo = async (req,res,next)=>{
 
 export const getVideo = async (req,res,next)=>{
     try{
+        console.log("get a viodeo",req.user.id);
         const video = await Video.findById(req.params.id)
         res.status(200).json(video)
     }catch(err){next(err)}
