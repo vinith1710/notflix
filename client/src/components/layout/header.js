@@ -81,7 +81,7 @@ const Header = () => {
         {currentUser && 
         // (
           <div className='loggedin-user d-none d-sm-flex'>
-            <Button variant="outline-secondary" onClick={()=>setOpen(true)}> Add Video</Button>
+            <Button variant="success" onClick={()=>setOpen(true)}> Add Video</Button>
             <img src={currentUser.img} />
             <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
               <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
@@ -99,7 +99,7 @@ const Header = () => {
         </Offcanvas.Header>
         <Offcanvas.Body>
         <div className='loggedin-user'>
-        <Button variant="outline-secondary" onClick={()=>setOpen(true)}> Add Video</Button>
+        <Button variant="success" onClick={()=>setOpen(true)}> Add Video</Button>
             <img src={currentUser.img} />
             <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
               <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
