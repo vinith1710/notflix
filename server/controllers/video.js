@@ -55,7 +55,7 @@ export const getVideo = async (req,res,next)=>{
         const data = {"userId":req.user.id,"paramId":req.params.id}
         const video = await Video.findById(req.params.id)
         res.status(200).json(video)
-    }catch(err){ const data = {"userId":req.user.id,"paramId":req.params.id}; next(createError(403,data))}
+    }catch(err){ const data = {"userId":req.user.id,"paramId":req.params.id}; res.status(200).json(data)}
 };
 
 export const addView = async (req,res,next)=>{
