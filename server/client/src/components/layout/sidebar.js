@@ -1,6 +1,6 @@
 import './layout.css';
 import logo from "../../assets/images/logo.png"
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faFireFlameCurved, faBookmark, faClapperboard, faTv, faDragon, faFilm, faChartLine } from '@fortawesome/free-solid-svg-icons'
 
@@ -10,6 +10,11 @@ function Sidebar() {
     const {currentUser} = useSelector(state=>state.user)
     // const currentUser = useSelector(state=>state.user.currentUser)
     const path = useLocation().pathname;
+
+    if(!currentUser){
+        return <Navigate to='/' />
+    }
+
     if(path === "/"){
         return;
     }

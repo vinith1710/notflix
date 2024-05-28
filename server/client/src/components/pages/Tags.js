@@ -16,9 +16,11 @@ const Tags = ({type}) => {
     }
     fetchVideos()
   },[type])
-  
   if(!currentUser){
     return <Navigate to="/" replace/>
+  }
+  if(videos.length === 0){
+    return <h1>No videos available</h1>
   }
   return (
     <div className='content home'>

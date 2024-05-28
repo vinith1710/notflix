@@ -8,7 +8,7 @@ import { ReactComponent as Sun } from "../../assets/themes/Sun.svg";
 import { ReactComponent as Moon } from "../../assets/themes/Moon.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faFireFlameCurved, faBookmark, faChartLine, faClapperboard, faTv, faDragon, faFilm, faBars } from '@fortawesome/free-solid-svg-icons'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/userSlice';
 import Upload from './upload';
@@ -49,9 +49,14 @@ const Header = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+ 
   const [open, setOpen] = useState(false);
   const path = useLocation().pathname;
+
+  if(!currentUser){
+    return <Navigate to='/' />
+}  
+
   if (path === "/") {
     return;
   }

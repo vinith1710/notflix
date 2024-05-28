@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './pages.css';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -162,26 +161,21 @@ const Login = () => {
                 <h3>Sign In</h3>
                 <h5>To continue to NOTFLIX</h5>
                 <Form>
-                    <Row>
-                        <Col>
                             <Form.Group className="mb-3" >
                                 <Form.Label>User Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter your User name" onChange={e => setNamelogin(e.target.value)} />
                             </Form.Group>
                             <div className='label-error' id='nameLogincheck'>Enter a user name</div>
-                        </Col>
-                        <Col>
+    
                             <Form.Group className="mb-3" >
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter a password" onChange={e => setPasswordlogin(e.target.value)} />
                             </Form.Group>
                             <div className='label-error' id='passwordLogincheck'>Enter a Password</div>
+<Row>
 
-                        </Col>
-                    </Row>
-                    <Row>
                         <Button variant="primary" style={{ width: 'max-content', margin: 'auto' }} onClick={handleLogin}>LOG IN</Button>{' '}
-                    </Row>
+</Row>
                 </Form>
                 <hr />
 
@@ -203,15 +197,13 @@ const Login = () => {
                 <h3>Sign Up</h3>
                 <h5>To create new account</h5>
                 <Form>
-                    <Row>
-                        <Col>
+
                             <Form.Group className="mb-3" >
                                 <Form.Label>User Name</Form.Label>
                                 <Form.Control type="text" placeholder="Enter your User name" onChange={e => setNamesignup(e.target.value)} />
                             </Form.Group>
                             <div className='label-error' id='nameSignupcheck'>Enter a user name</div><div className='label-error' id='nameSignupvalid'>Username should be more than three characters</div>
-                        </Col>
-                        <Col>
+
                             <Form.Group className="mb-3" >
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Enter a password" onChange={e => setPasswordsignup(e.target.value)} />
@@ -219,22 +211,18 @@ const Login = () => {
                             <div className='label-error' id='passwordSignupcheck'>Enter a Password</div><div className='label-error' id='passwordSignupvalid'>Enter a strong Password</div>
 
 
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
+
                             <Form.Group className="mb-3" >
                             {/* controlId="exampleForm.ControlInput1" */}
                                 <Form.Label>E-Mail</Form.Label>
                                 <Form.Control type="text" placeholder="Enter your Email Id" onChange={e => setEmailsignup(e.target.value)} />
                             </Form.Group>
                             <div className='label-error' id='emailSignupcheck'>Enter your E-Mail ID</div><div className='label-error' id='emailSignupvalid'>Email is not valid</div>
-                        </Col>
-                    </Row>
-                    <Row>
+                        <Row>
+
                         <Button variant="success" style={{ width: 'max-content', margin: 'auto' }} onClick={handleSignup}>SIGN UP</Button>{' '}
+                        </Row>
                         
-                    </Row>
                 </Form>
                 <hr />
                 <div>Already have an Account: <Button variant="primary" onClick={loginOrsignup}>Log In</Button></div>

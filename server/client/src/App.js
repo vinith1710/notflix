@@ -2,6 +2,7 @@ import Header from "./components/layout/header";
 import Sidebar from "./components/layout/sidebar";
 import Home from "./components/pages/home";
 import "./App.css";
+import "./mobile.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Video from "./components/pages/Video";
 import Login from "./components/pages/Login";
