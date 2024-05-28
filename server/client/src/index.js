@@ -8,8 +8,8 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:3001/api';
-// axios.defaults.baseURL = 'https://notflix-tfn6.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:3001/api';
+axios.defaults.baseURL = 'https://notflix-tfn6.onrender.com/api';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
