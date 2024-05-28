@@ -26,11 +26,12 @@
 .header {
     padding: 15px 26px;
     border-bottom: 2px solid var(--border_color);
-
+    gap: 5px;
     color: var(--text_color);
     background-color: var(--bg_color);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -274,5 +275,13 @@
 .upload-video h1 {
     text-align: center;
     margin-top: 20px;
+}
+
+
+.headerMenu{
+    /* border: #242424; */
+    padding: 5px;
+    background-color: cadetblue;
+    border-radius: 5px;
 }
 

@@ -8,7 +8,8 @@ import Login from "./components/pages/Login";
 import Dashboard from "./components/pages/Dashboard";
 // Fontawasome global import import the library
 import { library } from '@fortawesome/fontawesome-svg-core'
-
+import Tags from "./components/pages/Tags";
+import Search from "./components/pages/Search";
 // import your icons
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -32,6 +33,11 @@ function App() {
                 <Route path="home" element={<Home type="random" />} />
                 <Route path="trends" element={<Home type="trend" />} />
                 <Route path="subscriptions" element={<Home type="sub" />} />
+                <Route path="search" element={<Search/>} />
+                <Route path="movie" element={<Tags type="Movie" />} />
+                <Route path="tvseries" element={<Tags type="TvSeries" />} />
+                <Route path="anime" element={<Tags type="Anime" />} />
+                <Route path="animation" element={<Tags type="Animation" />} />
                 <Route path="video">
                   <Route path=":id" element={<Video/>}/>
                 </Route>

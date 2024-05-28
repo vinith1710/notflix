@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './layout.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -7,7 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import { ReactComponent as Sun } from "../../assets/themes/Sun.svg";
 import { ReactComponent as Moon } from "../../assets/themes/Moon.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faHouse, faFireFlameCurved, faBookmark, faCircleUser, faChartLine } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faFireFlameCurved, faBookmark, faChartLine, faClapperboard, faTv, faDragon, faFilm, faBars } from '@fortawesome/free-solid-svg-icons'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/userSlice';
@@ -17,16 +17,17 @@ import logo from "../../assets/images/logo.png"
 
 const Header = () => {
 
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [q,setQ] = useState("");
   const setDarkMode = () => {
     document.querySelector("body").setAttribute('data-theme', 'dark')
   }
   const setLightMode = () => {
     document.querySelector("body").setAttribute('data-theme', 'light')
   }
-  
+
   const toggleTheme = (e) => {
     if (e.target.checked) setDarkMode();
     else setLightMode();
@@ -34,7 +35,12 @@ const Header = () => {
 
   const { currentUser } = useSelector(state => state.user)
   // const currentUser = useSelector(state=>state.user.currentUser)
-  
+
+  const handleopenandclose=()=>{
+    setOpen(true);
+    handleClose()
+  }
+
   const handleLogout = () => {
     dispatch(logout())
     navigate("/");
@@ -46,23 +52,21 @@ const Header = () => {
 
   const [open, setOpen] = useState(false);
   const path = useLocation().pathname;
-  if(path == "/"){
+  if (path === "/") {
     return;
   }
 
-      return (
+  return (
     <>
       <div className='header'>
-      <Button className='d-xs-block d-sm-none' variant="primary" onClick={handleShow}>
-        Launch
-      </Button>
+        <FontAwesomeIcon icon={faBars} className='d-xs-block d-sm-none headerMenu' onClick={handleShow} />
         <div className='dark_mode'>
           <input
             className='dark_mode_input'
             type='checkbox'
             id='darkmode-toggle'
             onChange={toggleTheme}
-            />
+          />
           <label className='dark_mode_label' for='darkmode-toggle'>
             <Sun />
             <Moon />
@@ -74,46 +78,51 @@ const Header = () => {
             // placeholder="Search"
             className="me-2"
             aria-label="Search"
+            onChange={(e)=>setQ(e.target.value)}
           />
 
-          <Button variant="outline-success">Search</Button>
+          <Button variant="outline-success" onClick={()=>navigate(`/search?q=${q}`)}>Search</Button>
         </Form>
-        {currentUser && 
-        // (
+        {currentUser &&
+          // (
           <div className='loggedin-user d-none d-sm-flex'>
-            <Button variant="success" onClick={()=>setOpen(true)}> Add Video</Button>
-            <img src={currentUser.img} />
+            <Button variant="success" onClick={() => setOpen(true)}> Add Video</Button>
+            <img src={currentUser.img} alt='' />
             <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
               <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
             </DropdownButton>
           </div>
-      //   ) : (
-      //   <Link to="/"><Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}</Link>
-      // )
-      }
+          //   ) : (
+          //   <Link to="/"><Button variant="outline-secondary" ><FontAwesomeIcon icon={faCircleUser} /> Sign In</Button>{' '}</Link>
+          // )
+        }
       </div>
       {open && <Upload setOpen={setOpen} />}
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title><Link to="home" onClick={handleClose}><img src={logo} className='sidebar-logo' alt=''/></Link></Offcanvas.Title>
+          <Offcanvas.Title><Link to="home" onClick={handleClose}><img src={logo} className='sidebar-logo' alt='' /></Link></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-        <div className='loggedin-user'>
-        <Button variant="success" onClick={()=>setOpen(true)}> Add Video</Button>
-            <img src={currentUser.img} />
+          <div className='loggedin-user'>
+            <Button variant="success" onClick={handleopenandclose}> Add Video</Button>
+            <img src={currentUser.img} alt='' />
             <DropdownButton id="dropdown-basic-button" variant="info" title={currentUser.name}>
               <Dropdown.Item onClick={handleLogout}> Logout</Dropdown.Item>
             </DropdownButton>
           </div>
-          <hr/>
+          <hr />
           <div className='sidebar-items'>
 
-          {currentUser.isAdmin && <Link to='dashboard' onClick={handleClose}><FontAwesomeIcon icon={faChartLine} />Dashboard</Link>}
-                    <Link to='home' onClick={handleClose}><FontAwesomeIcon icon={faHouse} />Home</Link>
-                    <Link to='trends' onClick={handleClose}><FontAwesomeIcon icon={faFireFlameCurved} />Trending</Link>
-                    <Link to='subscriptions' onClick={handleClose}><FontAwesomeIcon icon={faBookmark} />Library</Link>
+            {currentUser.isAdmin && <Link to='dashboard' onClick={handleClose}><FontAwesomeIcon icon={faChartLine} />Dashboard</Link>}
+            <Link to='home' onClick={handleClose}><FontAwesomeIcon icon={faHouse} />Home</Link>
+            <Link to='trends' onClick={handleClose}><FontAwesomeIcon icon={faFireFlameCurved} />Trending</Link>
+            <Link to='subscriptions' onClick={handleClose}><FontAwesomeIcon icon={faBookmark} />Library</Link>
+            <hr />
+            <Link to='movie' onClick={handleClose}><FontAwesomeIcon icon={faClapperboard} />Movie</Link>
+            <Link to='tvseries' onClick={handleClose}><FontAwesomeIcon icon={faTv} />Tv Series</Link>
+            <Link to='anime' onClick={handleClose}><FontAwesomeIcon icon={faDragon} />Anime</Link>
+            <Link to='animation' onClick={handleClose}><FontAwesomeIcon icon={faFilm} />Animation</Link>
           </div>
-                    <hr/>
         </Offcanvas.Body>
       </Offcanvas>
     </>

@@ -7,7 +7,6 @@ import app from '../../firebase';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
 
 const Upload = ({ setOpen }) => {
   const navigate = useNavigate();
@@ -16,7 +15,6 @@ const Upload = ({ setOpen }) => {
   const [imgperc, setImagperc] = useState(0);
   const [videoperc, setVideogperc] = useState(0);
   const [inputs, setInputs] = useState({});
-  const [tags, setTags] = useState([]);
   const [uploaderror, setUploaderror] = useState(false);
   const handleChange = (e) => {
     setInputs((prev) => {

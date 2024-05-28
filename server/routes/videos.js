@@ -32,7 +32,7 @@ router.get("/random",random)
 router.get("/sub",verifyToken, sub)
 
 //Search using Tags
-router.get("/tags", tags)
+router.get("/tags/:id", tags)
 
 //Searching a video
 router.get("/search", search)

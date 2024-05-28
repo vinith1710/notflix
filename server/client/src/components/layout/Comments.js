@@ -41,7 +41,7 @@ const Comments = (videoId) => {
         <>
             <div className='comments'>
 
-                <img src={currentUser.img} />
+                <img src={currentUser.img} alt=""/>
                 <input type="text" id="commentId" placeholder="Add a comment..." /><Button variant="outline-secondary" onClick={addComment}>Post</Button>
             </div>
             {comments.map(comment => (

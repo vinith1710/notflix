@@ -1,11 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
 import { format } from "timeago.js"
 
 const Comment = ({comment}) => {
 
-  const { currentUser } = useSelector((state) => state.user);
   const [channel,setChannel] = useState({});
 
   useEffect(()=>{

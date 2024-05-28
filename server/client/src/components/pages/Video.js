@@ -40,7 +40,7 @@ useEffect(()=>{
     await axios.put(`/videos/view/${path}`);
   }
   addViews();
-  },[])
+  },[path])
   const handleLike= async ()=>{
     await axios.put(`/users/like/${currentVideo._id}`)
     dispatch(like(currentUser._id))
@@ -61,12 +61,12 @@ useEffect(()=>{
     return <Navigate to="/" replace/>
   }
 if(!loading){return <h1>Loading Video....</h1>}
-{
+
   return (
     <div className='content video'>
       <div className='video-content'>
         <div className='video-wrapper'>
-          <video src={currentVideo.videoUrl} controls style={{width:"100%", height:"70vh"}}></video>
+          <video src={currentVideo.videoUrl} controls></video>
         </div>
         <h1 className='video-title'>{currentVideo.title}</h1>
         <div className='video-details'>
@@ -81,7 +81,7 @@ if(!loading){return <h1>Loading Video....</h1>}
         <hr />
         <div className='channel'>
           <div className='channel-info'>
-            <img src={channel.img} />
+            <img src={channel.img} alt=''/>
             <div className='channel-info-text'>
               <h1>{channel.name}</h1>
               <h2>{channel.subscribers} Followers</h2>
@@ -96,7 +96,7 @@ if(!loading){return <h1>Loading Video....</h1>}
       {/* <div className='video-recommend'>recommend</div> */}
     </div>
   )
-}
+
 }
 
 export default Video;

@@ -2,16 +2,15 @@ import './layout.css';
 import logo from "../../assets/images/logo.png"
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faFireFlameCurved, faBookmark, faCircleUser, faClapperboard, faTv, faDragon, faFilm, faChartLine } from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faFireFlameCurved, faBookmark, faClapperboard, faTv, faDragon, faFilm, faChartLine } from '@fortawesome/free-solid-svg-icons'
 
-import Button from 'react-bootstrap/Button';
 import { useSelector } from 'react-redux';
 function Sidebar() {
 
     const {currentUser} = useSelector(state=>state.user)
     // const currentUser = useSelector(state=>state.user.currentUser)
     const path = useLocation().pathname;
-    if(path == "/"){
+    if(path === "/"){
         return;
     }
 
@@ -36,10 +35,10 @@ function Sidebar() {
                     </span>
                 <hr/></>} */}
 
-                    <Link to='/library'><FontAwesomeIcon icon={faClapperboard} />Movie</Link>
-                    <Link to='/library'><FontAwesomeIcon icon={faTv} />Tv Series</Link>
-                    <Link to='/library'><FontAwesomeIcon icon={faDragon} />Anime</Link>
-                    <Link to='/library'><FontAwesomeIcon icon={faFilm} />Animation</Link>
+                    <Link to='movie'><FontAwesomeIcon icon={faClapperboard} />Movie</Link>
+                    <Link to='tvseries'><FontAwesomeIcon icon={faTv} />Tv Series</Link>
+                    <Link to='anime'><FontAwesomeIcon icon={faDragon} />Anime</Link>
+                    <Link to='animation'><FontAwesomeIcon icon={faFilm} />Animation</Link>
 
                 </div>
             </div>
