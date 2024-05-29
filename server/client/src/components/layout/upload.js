@@ -133,8 +133,8 @@ const Upload = ({ setOpen }) => {
           <div id='imageCheck' className='label-error'>Select an Image</div>
 
           {/* {videoperc === 100 ? <Button variant="success" onClick={handleUpload}>UPLOAD</Button> : <Button variant="secondary" size="lg" disabled>UPLOAD</Button>} */}
-          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="success" disabled onClick={handleUpload}>UPLOAD</Button>) : (<Button variant="success" onClick={handleUpload}>UPLOAD</Button>)}
-          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="primary"  onClick={handlePost}>POST VIDEO</Button>) : (<Button variant="primary" disabled onClick={handlePost}>POST VIDEO</Button>)}
+          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="success" className='uploadDisable'>UPLOAD</Button>) : (<Button variant="success" onClick={handleUpload}>UPLOAD</Button>)}
+          {inputs.videoUrl && inputs.imgUrl && uploaderror ? (<Button variant="primary"  onClick={handlePost}>POST VIDEO</Button>) : (<Button variant="primary" className='uploadDisable'>POST VIDEO</Button>)}
         </div>
       </div>
     </>

@@ -276,7 +276,9 @@
     text-align: center;
     margin-top: 20px;
 }
-
+.uploadDisable{
+    cursor: no-drop !important;
+}
 
 .headerMenu{
     /* border: #242424; */
