@@ -81,7 +81,7 @@ if(!loading){return <h1>Loading Video....</h1>}
         <hr />
         <div className='channel'>
           <div className='channel-info'>
-            <img src={channel.img} alt=''/>
+            <img src={currentVideo.imgUrl} alt=''/>
             <div className='channel-info-text'>
               <h1>{channel.name}</h1>
               <h2>{channel.subscribers} Followers</h2>

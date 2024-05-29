@@ -20,7 +20,7 @@ const Card = ({type,video}) => {
     <div className='card-css'>
       <img type={type} src={video.imgUrl} alt='' />
       <div className='card-Details'>
-        <img type={type}  src={channel.img} alt=''/>
+        <img type={type}  src={video.imgUrl} alt=''/>
         <div className='card-text'>
           <h1>{video.title}</h1>
           <h2>{channel.name}</h2>
